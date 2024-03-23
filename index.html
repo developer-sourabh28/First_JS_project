@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter Page</title>
+  <style>
+    h1{
+        font-size: 52px;
+        font-family: Arial, Helvetica, sans-serif;
+}
+    body {
+      background-color: black;
+      color: white;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      margin-top: 50px;
+      margin-left: 50px;
+    }
+    .count {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .error {
+      color: red;
+      display: none;
+      font-size: 20px;
+    }
+    .buttons {
+      display: flex;
+      margin-top: 60px;
+    }
+    .buttons button {
+      padding: 10px;
+     ;
+      margin-right: 20px;
+    }
+    #decrement{
+        background-color: white;
+        width: 170px;
+        height: 50px;
+    }
+    #increment{
+        background-color: white;
+        width: 170px;
+        height: 50px;
+    }
+    #clear{
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+        width: 170px;
+        height: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Counter using HTML</h1>
+  <div class="count">Your current count is: <span id="counter">0</span></div>
+  <hr>
+  <div class="error"></div>
+  <div class="buttons">
+    <button id="decrement">Decrement</button>
+    <button id="increment">Increment</button>
+    <button id="clear">Clear</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const decrementBtn = document.getElementById('decrement');
+    const incrementBtn = document.getElementById('increment');
+    const clearBtn = document.getElementById('clear');
+    const counterDisplay = document.getElementById('counter');
+    const errorDisplay = document.querySelector('.error');
+
+    let count = 0;
+
+    decrementBtn.addEventListener('click', function () {
+      if (count > 0) {
+        count--;
+        counterDisplay.innerText = count;
+        errorDisplay.style.display = 'none';
+      } else {
+        errorDisplay.innerText = 'Error : Cannot go below 0';
+        errorDisplay.style.display = 'block';
+
+      }
+      updateClearButton();
+    });
+
+    incrementBtn.addEventListener('click', function () {
+      count++;
+      counterDisplay.innerText = count;
+      errorDisplay.style.display = 'none';
+      updateClearButton();
+    });
+
+    clearBtn.addEventListener('click', function () {
+      count = 0;
+      counterDisplay.innerText = count;
+      errorDisplay.style.display = 'none';
+      updateClearButton();
+    });
+
+    function updateClearButton() {
+      clearBtn.style.display = count === 0 ? 'none' : 'block';
+    }
+  });
+</script>
+
+</body>
+</html>
